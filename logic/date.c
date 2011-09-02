@@ -357,16 +357,29 @@ void display_date(line_t line, update_t update)
 					display_chars(switch_seg(line, LCD_SEG_L1_1_0, LCD_SEG_L2_1_0), str, SEG_ON);
 
 					// Convert month to string
+#ifdef CONFIG_METRIC_ONLY
+#ifndef LZM					
 					str = itoa(sDate.month, 2, 1);
+#else
+					str = itoa(sDate.month, 2, 0);
+#endif
+#endif
 					display_chars(switch_seg(line, LCD_SEG_L1_3_2, LCD_SEG_L2_3_2), str, SEG_ON);
 				} else {
 #else
 				if (1) {
 //#endif //at wrong place
+
 					str = itoa(sDate.day, 2, 0);
 					display_chars(switch_seg(line, LCD_SEG_L1_3_2, LCD_SEG_L2_3_2), str, SEG_ON);
 					
+#ifndef CONFIG_METRIC_ONLY
+#ifdef LZM					
 					str = itoa(sDate.month, 2, 0);
+#else
+					str = itoa(sDate.month, 2, 1);
+#endif
+#endif
 					display_chars(switch_seg(line, LCD_SEG_L1_1_0, LCD_SEG_L2_1_0), str, SEG_ON);
 #endif //placement fix
 				}

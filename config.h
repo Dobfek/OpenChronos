@@ -18,8 +18,6 @@
 #define CONFIG_EGGTIMER
 // CONFIG_PHASE_CLOCK is not set
 #define CONFIG_ALTITUDE
-// CONFIG_VARIO is not set
-// CONFIG_ALTI_ACCUMULATOR is not set
 // CONFIG_PROUT is not set
 // CONFIG_SIDEREAL is not set
 #define CONFIG_DST 0
@@ -40,6 +38,7 @@
 #define OLD_SCH
 #define NEW_CHAR
 #define LZH
+#define LZM
 #define CONFIG_USE_SYNC_TOSET_TIME
 // CONFIG_USE_DISCRET_RFBSL is not set
 // CONFIG_USE_GPS is not set
