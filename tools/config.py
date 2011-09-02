@@ -272,6 +272,12 @@ DATA["LZM"] = {
 	"name": "Leading zero for months.",
 	"depends": [],
 	"default": False}
+	
+	###IMPLEMENTED by Dobfek 2011-09-03
+DATA["LZA"] = {
+	"name": "Leading zero for alarm.",
+	"depends": [],
+	"default": False}
 			
 DATA["CONFIG_USE_SYNC_TOSET_TIME"] = {
 	"name": "Sync is the only way to set clocks data/time",

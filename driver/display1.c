@@ -124,7 +124,7 @@ const u8 lcd_font[] =
 #ifndef NEW_CHAR
   SEG_A+      SEG_C+SEG_D+      SEG_F+SEG_G,     // Displays "S" same as 5
 #else
-  SEG_A+      SEG_C+SEG_D+      SEG_F      ,     // Displays "S"
+  SEG_A+      SEG_C+SEG_D+      SEG_F      ,     // Displays "S" same as 5
 #endif  
                     SEG_D+SEG_E+SEG_F+SEG_G,     // Displays "t"
               SEG_C+SEG_D+SEG_E            ,     // Displays "u"
