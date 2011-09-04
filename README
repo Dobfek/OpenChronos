@@ -14,6 +14,9 @@ Changes, merges, project status
   - Dependency related "rare" bug reported by anilgulecha is solved. Dobfek
   - Unavailable modules removed from config.py reported by anilgulecha is solved. Dobfek
   - Leading zero for month, and alarm is chooseable Dobfek
+  - 2 new chooseable lightweight modules developed!! Dobfek
+  	- Economical Display: LCD uses lower refresh frequency, when the sun shines "less"(19h-08h). Makes power consumption lower!!! Inspired by: midluk's commit nr:c05f553ec41cc9ac30755c005df892168e2a5863
+  	- Dirty Little Hour Beep: A few dozen bytes code, depends on alarm module, gives a beep at x:00.
 
 Getting Openchronos build on Ubuntu 11.04:
 http://www.gulecha.org/2011/08/30/getting-openchronos-building-on-ubuntu-11-04/
