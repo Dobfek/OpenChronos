@@ -567,6 +567,14 @@ void wakeup_event(void)
 // *************************************************************************************************
 void process_requests(void)
 {
+#ifdef ECO_DISPLAY
+	if (request.flag.eco_display) eco_display();
+#endif	
+#ifdef DLHB
+#ifdef CONFIG_ALARM
+	if (request.flag.dlhb) dlhb();
+#endif
+#endif	
 	// Do temperature measurement
 	if (request.flag.temperature_measurement) temperature_measurement(FILTER_ON);
 	

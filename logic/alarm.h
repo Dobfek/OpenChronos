@@ -81,7 +81,11 @@ struct alarm
 };
 extern struct alarm sAlarm;
 
-
+#ifdef DLHB
+#ifdef CONFIG_ALARM
+void dlhb(void);
+#endif
+#endif
 // *************************************************************************************************
 // Extern section
 

@@ -285,4 +285,22 @@ void display_alarm(u8 line, u8 update)
 	  }
 	}
 }
+
+#ifdef DLHB
+#ifdef CONFIG_ALARM
+// *************************************************************************************************
+// @fn          dlhb
+// @brief       Lowers the display frequency at night
+// @param       none
+// @return      none
+// *************************************************************************************************
+void dlhb(void)
+{
+if(!sys.flag.no_beep)
+{
+request.flag.alarm_buzzer = 1;
+}
+}
+#endif
+#endif
 #endif /* CONFIG_ALARM */

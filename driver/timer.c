@@ -366,6 +366,21 @@ __interrupt void TIMER0_A0_ISR(void)
 	}
 	
 	// -------------------------------------------------------------------
+	// Service modules that require 1/hour processing
+	if (sTime.drawFlag > 2) 
+	{
+		#ifdef ECO_DISPLAY	
+		request.flag.eco_display = 1;
+		#endif
+		#ifdef DLHB
+		#ifdef CONFIG_ALARM
+		request.flag.dlhb = 1;
+		#endif
+		#endif
+	}	
+		
+	
+	// -------------------------------------------------------------------
 	// Service modules that require 1/min processing
 	if (sTime.drawFlag >= 2) 
 	{

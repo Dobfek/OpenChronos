@@ -278,6 +278,18 @@ DATA["LZA"] = {
 	"name": "Leading zero for alarm.",
 	"depends": [],
 	"default": False}
+	
+	###IMPLEMENTED by Dobfek 2011-09-04
+DATA["ECO_DISPLAY"] = {
+	"name": "Economical display. Lower display frequencies at night.",
+	"depends": [],
+	"default": False}
+	
+	###IMPLEMENTED by Dobfek 2011-09-04
+DATA["DLHB"] = {
+	"name": "Dirty little hour beep.",
+	"depends": [],
+	"default": False}
 			
 DATA["CONFIG_USE_SYNC_TOSET_TIME"] = {
 	"name": "Sync is the only way to set clocks data/time",

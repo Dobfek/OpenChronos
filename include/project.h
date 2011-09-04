@@ -128,6 +128,14 @@ typedef union
 #ifdef CONFIG_STRENGTH
     u16 strength_buzzer 		: 1;    // 1 = Output buzzer from strength_data
 #endif
+#ifdef ECO_DISPLAY
+    u16 eco_display			: 1;	// 1 = LCD refresh frequency is lower at night
+#endif
+#ifdef DLHB
+#ifdef CONFIG_ALARM
+    u16 dlhb				: 1;	// 1 = Dirty Little Hour Beep
+#endif
+#endif
   } flag;
   u16 all_flags;            // Shortcut to all display flags (for reset)
 } s_request_flags;
