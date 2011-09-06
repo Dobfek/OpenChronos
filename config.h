@@ -42,6 +42,7 @@
 #define LZA
 #define ECO_DISPLAY
 // DLHB is not set
+#define CONFIG_MSTR
 #define CONFIG_USE_SYNC_TOSET_TIME
 // CONFIG_USE_DISCRET_RFBSL is not set
 // CONFIG_USE_GPS is not set

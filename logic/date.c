@@ -274,7 +274,11 @@ void mx_date(line_t line)
 void sx_date(line_t line)
 {
 	// Rotate through 4 views
+	#ifdef CONFIG_MSTR
+	if (++sDate.view >= 5) sDate.view = 0;
+	#else
 	if (++sDate.view >= 4) sDate.view = 0;
+	#endif
 	if(sDate.view ==3) sTime.line2ViewStyle = DISPLAY_DEFAULT_VIEW;
 }
 
@@ -290,6 +294,9 @@ void display_date(line_t line, update_t update)
 {
 #ifdef CONFIG_DAY_OF_WEEK
 	const u8 weekDayStr[7][3] = {"SUN","MON","TUE","WED","THU","FRI","SAT"};
+#endif
+#ifdef CONFIG_MSTR
+	const u8 monthStr[12][3] = {"JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"};
 #endif
 	u8 * str;
 	
@@ -389,6 +396,23 @@ void display_date(line_t line, update_t update)
 				str = itoa(sDate.year, 4, 0);
 				display_chars(switch_seg(line, LCD_SEG_L1_3_0, LCD_SEG_L2_3_0), str, SEG_ON);
 				break;
+			
+#ifdef CONFIG_MSTR			
+			case 4:
+				//MMM.DD
+				//Convert month to string
+				str = itoa(sDate.day, 2, 1);
+				display_chars(switch_seg(line, LCD_SEG_L1_1_0, LCD_SEG_L2_1_0), str, SEG_ON);
+
+				str = monthStr[sDate.month-1];
+				display_chars(switch_seg(line, LCD_SEG_L1_3_2, LCD_SEG_L2_4_2), str, SEG_ON);
+				display_symbol(switch_seg(line, LCD_SEG_L1_DP1, LCD_SEG_L2_DP), SEG_ON);
+				break;
+#else
+				// skip this view
+				sDate.view++;
+#endif
+			
 			default:
 				display_time(line, update);
 				break;
