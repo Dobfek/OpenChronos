@@ -614,7 +614,7 @@ void display_all_off(void)
 #ifdef ECO_DISPLAY
 // *************************************************************************************************
 // @fn          eco_display
-// @brief       Lowers the display frequency at night
+// @brief       Lowers the display frequency at night(19h-08h)
 // @param       none
 // @return      none
 // *************************************************************************************************

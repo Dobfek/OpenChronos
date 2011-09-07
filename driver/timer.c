@@ -370,7 +370,7 @@ __interrupt void TIMER0_A0_ISR(void)
 	if (sTime.drawFlag > 2) 
 	{
 		#ifdef ECO_DISPLAY	
-		request.flag.eco_display = 1;
+		request.flag.eco_display = 1; //ECO_display flag
 		#endif
 		#ifdef DLHB
 		#ifdef CONFIG_ALARM
