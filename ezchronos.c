@@ -568,7 +568,6 @@ void wakeup_event(void)
 void process_requests(void)
 {
 #ifdef ECO_DISPLAY
-	// Change display freq when needed
 	if (request.flag.eco_display) eco_display();
 #endif	
 #ifdef DLHB

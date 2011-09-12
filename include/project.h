@@ -129,7 +129,7 @@ typedef union
     u16 strength_buzzer 		: 1;    // 1 = Output buzzer from strength_data
 #endif
 #ifdef ECO_DISPLAY
-    u16 eco_display			: 1;	// 1 = LCD refresh freq is lower at night
+    u16 eco_display			: 1;	// 1 = LCD refresh frequency is lower at night
 #endif
 #ifdef DLHB
 #ifdef CONFIG_ALARM

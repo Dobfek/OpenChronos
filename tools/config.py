@@ -281,7 +281,7 @@ DATA["LZA"] = {
 	
 	###IMPLEMENTED by Dobfek 2011-09-04
 DATA["ECO_DISPLAY"] = {
-	"name": "Economical display. Lower display frequency and -30% current consumption at night.",
+	"name": "Economical display. Lower display frequencies at night.",
 	"depends": [],
 	"default": False}
 	
