@@ -90,9 +90,17 @@ const u8 lcd_font[] =
 #endif
   0                                        ,     // Displays " " (:)
   0                                        ,     // Displays " " (;)
+#ifndef NEW_CHAR
   SEG_A+                        SEG_F+SEG_G,     // Displays "<" as high c
+#else  
+  SEG_A+                  SEG_E+SEG_F      ,     // Displays "<" as old, mirrored 7
+#endif
                     SEG_D+            SEG_G,     // Displays "="
+#ifndef NEW_CHAR
   0                                        ,     // Displays " " (>)
+#else  
+        SEG_B+SEG_C+SEG_D                  ,     // Displays ">" like mirrored L
+#endif  
   SEG_A+SEG_B+            SEG_E+      SEG_G,     // Displays "?"
   0                                        ,     // Displays " " (@)
   SEG_A+SEG_B+SEG_C+      SEG_E+SEG_F+SEG_G,     // Displays "A"
@@ -124,7 +132,7 @@ const u8 lcd_font[] =
 #ifndef NEW_CHAR
   SEG_A+      SEG_C+SEG_D+      SEG_F+SEG_G,     // Displays "S" same as 5
 #else
-  SEG_A+      SEG_C+SEG_D+      SEG_F      ,     // Displays "S" same as 5
+  SEG_A+      SEG_C+SEG_D+      SEG_F      ,     // Displays "S"
 #endif  
                     SEG_D+SEG_E+SEG_F+SEG_G,     // Displays "t"
               SEG_C+SEG_D+SEG_E            ,     // Displays "u"
