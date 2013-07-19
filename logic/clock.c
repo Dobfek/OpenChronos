@@ -374,6 +374,7 @@ void mx_time(u8 line)
       set_value(&hours, 2, 0, 0, 23, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_3_2, display_hours_12_or_24);
 #else      
       set_value(&ht, 1, 0, 0, 2, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_3, display_hours_12_or_24);
+      if((ht==2)&&(ho>3))ho=3; //set_value bug workaround Dobfek 2013.07.19.
 #endif
       select = 2;
       break;
