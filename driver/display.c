@@ -254,18 +254,11 @@ u8 * itoa(u32 n, u8 digits, u8 blanks)
 	if ((digits == 0) || (digits > 7)) return (itoa_str);
 	
 	// Numbers 0 .. 180 can be copied from itoa_conversion_table without conversion
-	if (n <= 180)
+	if (n <= 99)
 	{
-		if (digits >= 3)
-		{
-			memcpy(itoa_str+(digits-3), itoa_conversion_table[n], 3);
-		}
-		else // digits == 1 || 2  
-		{
-			memcpy(itoa_str, itoa_conversion_table[n]+(3-digits), digits);
-		}
+			memcpy(itoa_str, itoa_conversion_table[n]+(2-digits), digits);
 	}
-	else // For n > 180 need to calculate string content
+	else // For n > 99 need to calculate string content
 	{
 		// Calculate digits from least to most significant number
 		do 								

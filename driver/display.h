@@ -67,7 +67,7 @@
 extern const u8 lcd_font[];
 extern const u8 * segments_lcdmem[];
 extern const u8 segments_bitmask[];
-extern const u8 itoa_conversion_table[][3];
+extern const u8 itoa_conversion_table[][2];
 
 
 // *************************************************************************************************
