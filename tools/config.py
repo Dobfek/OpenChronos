@@ -296,6 +296,12 @@ DATA["CONFIG_MSTR"] = {
 	"name": "Name of the month, like day of the week output(MMM.DD).",
 	"depends": [],
 	"default": False}
+	
+	###IMPLEMENTED by Dobfek 2013-07-19
+DATA["NT"] = {
+	"name": "New time set method. Set one character at a time",
+	"depends": [],
+	"default": False}
 			
 DATA["CONFIG_USE_SYNC_TOSET_TIME"] = {
 	"name": "Sync is the only way to set clocks data/time",

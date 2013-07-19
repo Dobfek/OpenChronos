@@ -19,7 +19,7 @@ Changes, merges, project status
   	- Dirty Little Hour Beep: A few dozen bytes code, depends on alarm module, gives a beep at x:00.
   - New chooseable name of the month module in date.c. Output form is: MMM.DD Dobfek
   - itoa "rethink": Removed numbers 100-180 from itoa_conversion_table, because these numbers are really rarely used by the chronos. If needed, itoa will do the conversion. Works as the "original" itoa, but the binary size is 372 bytes smaller! Dobfek
-  
+  - New time set method: Now you can set the time characters individually.
 Getting Openchronos build on Ubuntu 11.04:
 http://www.gulecha.org/2011/08/30/getting-openchronos-building-on-ubuntu-11-04/
 And howto from me:

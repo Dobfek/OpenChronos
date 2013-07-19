@@ -231,10 +231,19 @@ void mx_time(u8 line)
   u8 select;
   s32 timeformat;
   s16 timeformat1;
+  u8 * str;
+#ifndef NT  
   s32 hours;
   s32 minutes;
   s32 seconds;
-  u8 * str;
+#else    
+  s32 ht;
+  s32 ho;
+  s32 mt;
+  s32 mo;
+  s32 st;
+  s32 so;
+#endif
 
   // Clear display
   clear_display_all();
@@ -257,10 +266,18 @@ void mx_time(u8 line)
     timeformat 	= TIMEFORMAT_24H;
   }
   timeformat1	= timeformat;
-  hours 		= sTime.hour;
+#ifndef NT
+  hours		= sTime.hour;
   minutes 	= sTime.minute;
   seconds 	= sTime.second;
-
+#else
+  ht 	= sTime.hour/10;
+  ho 	= sTime.hour%10;
+  mt 	= sTime.minute/10;
+  mo 	= sTime.minute%10;
+  st 	= sTime.second/10;
+  so 	= sTime.second%10;
+#endif  
   // Init value index
   select = 0;
 
@@ -286,10 +303,15 @@ void mx_time(u8 line)
       Timer0_Stop();
 
       // Store local variables in global clock time
-      sTime.hour 	 = hours;
+#ifndef NT
+      sTime.hour   = hours;
       sTime.minute = minutes;
       sTime.second = seconds;
-
+#else	  
+      sTime.hour   = (ht*10)+ho;
+      sTime.minute = (mt*10)+mo;
+      sTime.second = (st*10)+so;
+#endif
       // Start clock timer
       Timer0_Start();
 
@@ -323,31 +345,81 @@ void mx_time(u8 line)
     case 0:
 #endif
     case 1:		// Display HH:MM (LINE1) and .SS (LINE2)
+
+#ifndef NT
       str = itoa(hours, 2, 0);
+#else
+      str = itoa((ht*10)+ho, 2, 0);
+#endif
       display_chars(LCD_SEG_L1_3_2, str, SEG_ON);
       display_symbol(LCD_SEG_L1_COL, SEG_ON);
 
+#ifndef NT
       str = itoa(minutes, 2, 0);
+#else
+      str = itoa((mt*10)+mo, 2, 0);
+#endif      
       display_chars(LCD_SEG_L1_1_0, str, SEG_ON);
 
+#ifndef NT
       str = itoa(seconds, 2, 0);
+#else      
+      str = itoa((st*10)+so, 2, 0);
+#endif      
       display_chars(LCD_SEG_L2_1_0, str, SEG_ON);
       display_symbol(LCD_SEG_L2_DP, SEG_ON);
 
       // Set hours
+#ifndef NT
       set_value(&hours, 2, 0, 0, 23, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_3_2, display_hours_12_or_24);
+#else      
+      set_value(&ht, 1, 0, 0, 2, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_3, display_hours_12_or_24);
+#endif
       select = 2;
       break;
 
     case 2:		// Set minutes
-      set_value(&minutes, 2, 0, 0, 59, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_1_0, display_value1);
+#ifndef NT
+          set_value(&minutes, 2, 0, 0, 59, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_1_0, display_value1);
+#else          
+	  if(ht==2)
+	  {
+	  set_value(&ho, 1, 0, 0, 3, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_2, display_hours_12_or_24);
+	  }
+	  else
+	  {
+	  set_value(&ho, 1, 0, 0, 9, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_2, display_hours_12_or_24);
+	  }
+#endif	  
       select = 3;
       break;
 
     case 3:		// Set seconds
+#ifndef NT
       set_value(&seconds, 2, 0, 0, 59, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L2_1_0, display_value1);
       select = 0;
+#else	  
+      set_value(&mt, 1, 0, 0, 5, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_1, display_value1);
+      select = 4;
+#endif      
       break;
+
+#ifdef NT      
+   case 4:
+      set_value(&mo, 1, 0, 0, 9, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_0, display_value1);
+      select = 5;
+      break;
+      
+   case 5:
+      set_value(&st, 1, 0, 0, 5, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L2_1, display_value1);
+      select = 6;
+      break;
+      
+   case 6:
+      set_value(&so, 1, 0, 0, 9, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L2_0, display_value1);
+      select = 0;
+      break;
+#endif
     }
   }
 
