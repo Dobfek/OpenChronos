@@ -383,14 +383,8 @@ void mx_time(u8 line)
 #ifndef NT
           set_value(&minutes, 2, 0, 0, 59, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_1_0, display_value1);
 #else          
-	  if(ht==2)
-	  {
-	  set_value(&ho, 1, 0, 0, 3, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_2, display_hours_12_or_24);
-	  }
-	  else
-	  {
-	  set_value(&ho, 1, 0, 0, 9, SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_2, display_hours_12_or_24);
-	  }
+	  set_value(&ho, 1, 0, 0, ((ht==2)?3:9), SETVALUE_ROLLOVER_VALUE + SETVALUE_DISPLAY_VALUE + SETVALUE_NEXT_VALUE, LCD_SEG_L1_2, display_hours_12_or_24);
+
 #endif	  
       select = 3;
       break;
