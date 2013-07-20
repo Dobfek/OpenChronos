@@ -256,7 +256,7 @@ u8 * itoa(u32 n, u8 digits, u8 blanks)
 	// Numbers 0 .. 180 can be copied from itoa_conversion_table without conversion
 	if (n <= 99)
 	{
-			memcpy(itoa_str, itoa_conversion_table[n]+(2-digits), digits);
+			memcpy(itoa_str+((digits>2)?digits-2:0), itoa_conversion_table[n]+(2-((digits>2)?2:digits)), ((digits>2)?2:digits)); //itoa fix
 	}
 	else // For n > 99 need to calculate string content
 	{
